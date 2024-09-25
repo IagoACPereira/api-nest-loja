@@ -1,5 +1,5 @@
 export class UsuarioEntity {
-  id: string | number;
+  id: string;
   nome: string;
   email: string;
   senha: string;
