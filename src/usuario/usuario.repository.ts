@@ -20,4 +20,24 @@ export class UsuarioRepository {
 
     return possivelUsuario === undefined;
   }
+
+  async atualiza(id: string, dadosAtualizacao: Partial<UsuarioEntity>) {
+    const possivelUsuario = this.usuarios.find(
+      usuarioSalvo => usuarioSalvo.id === id
+    );
+
+    if (!possivelUsuario) {
+      throw new Error('Usuário não existe')
+    }
+
+    Object.entries(dadosAtualizacao).forEach(([chave, valor]) => {
+      if (chave === 'id') {
+        return;
+      }
+      
+      possivelUsuario[chave] = valor;
+    })
+
+    return possivelUsuario;
+  }
 }
